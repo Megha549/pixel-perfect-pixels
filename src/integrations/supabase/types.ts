@@ -14,7 +14,81 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      concept_progress: {
+        Row: {
+          answered: boolean
+          attempts: number
+          concept_id: string
+          created_at: string
+          id: string
+          last_misconception: string | null
+          transferred: boolean
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          answered?: boolean
+          attempts?: number
+          concept_id: string
+          created_at?: string
+          id?: string
+          last_misconception?: string | null
+          transferred?: boolean
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          answered?: boolean
+          attempts?: number
+          concept_id?: string
+          created_at?: string
+          id?: string
+          last_misconception?: string | null
+          transferred?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          course: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          interests: string[]
+          onboarded: boolean
+          semester: string | null
+          skill_level: string | null
+          subjects: string[]
+          updated_at: string
+        }
+        Insert: {
+          course?: string | null
+          created_at?: string
+          display_name?: string | null
+          id: string
+          interests?: string[]
+          onboarded?: boolean
+          semester?: string | null
+          skill_level?: string | null
+          subjects?: string[]
+          updated_at?: string
+        }
+        Update: {
+          course?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          interests?: string[]
+          onboarded?: boolean
+          semester?: string | null
+          skill_level?: string | null
+          subjects?: string[]
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
