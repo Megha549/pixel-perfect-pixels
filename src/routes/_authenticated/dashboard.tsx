@@ -25,13 +25,21 @@ function Dashboard() {
   const transferred = progress.filter((p) => p.transferred).length;
   const mastery = Math.round((transferred / CONCEPTS.length) * 100);
 
-  const modules = [
-    { name: "Learn", note: "Concepts & theory", meta: `${answered} / 5 concepts`, pct: (answered / 5) * 100, to: "/concept/select" as const },
-    { name: "Practice", note: "Drills & repetition", meta: `${progress.reduce((a, p) => a + p.attempts, 0)} attempts`, pct: Math.min(100, progress.reduce((a, p) => a + p.attempts, 0) * 10), to: "/concept/groupby" as const },
-    { name: "Apply", note: "Real schemas", meta: `${transferred} / 5 transferred`, pct: (transferred / 5) * 100, to: "/concept/join" as const },
-    { name: "Build", note: "Projects & capstones", meta: transferred >= 3 ? "unlocked" : "locked", pct: transferred >= 3 ? 20 : 0, to: "/concept/subqueries" as const },
-    { name: "Explore", note: "Self-directed", meta: "open", pct: 25, to: "/concept/nulls" as const },
-    { name: "Evidence", note: "Proof of skill", meta: `${transferred} demonstrated`, pct: mastery, to: "/evidence" as const },
+  const attempts = progress.reduce((a, p) => a + p.attempts, 0);
+
+  const modules: {
+    name: string;
+    note: string;
+    meta: string;
+    pct: number;
+    concept?: string;
+  }[] = [
+    { name: "Learn", note: "Concepts & theory", meta: `${answered} / 5 concepts`, pct: (answered / 5) * 100, concept: "select" },
+    { name: "Practice", note: "Drills & repetition", meta: `${attempts} attempts`, pct: Math.min(100, attempts * 10), concept: "groupby" },
+    { name: "Apply", note: "Real schemas", meta: `${transferred} / 5 transferred`, pct: (transferred / 5) * 100, concept: "join" },
+    { name: "Build", note: "Projects & capstones", meta: transferred >= 3 ? "unlocked" : "locked", pct: transferred >= 3 ? 20 : 0, concept: "subqueries" },
+    { name: "Explore", note: "Self-directed", meta: "open", pct: 25, concept: "nulls" },
+    { name: "Evidence", note: "Proof of skill", meta: `${transferred} demonstrated`, pct: mastery },
   ];
 
   const next = CONCEPTS.find((c) => !progress.some((p) => p.concept_id === c.id && p.transferred));
