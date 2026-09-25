@@ -8,6 +8,7 @@ import {
   checkQuery,
   diagnose,
   getConcept,
+  type Concept,
   type Diagnosis,
   type ConceptId,
 } from "@/lib/bridge-content";
@@ -46,8 +47,9 @@ const STAGE_STEP: Record<Stage, number> = {
 
 function ConceptFlow() {
   const { conceptId } = Route.useParams();
-  const concept = getConcept(conceptId);
-  if (!concept) throw notFound();
+  const found = getConcept(conceptId);
+  if (!found) throw notFound();
+  const concept: Concept = found;
 
   const qc = useQueryClient();
   const { data: profile } = useQuery({ queryKey: ["profile"], queryFn: fetchProfile });

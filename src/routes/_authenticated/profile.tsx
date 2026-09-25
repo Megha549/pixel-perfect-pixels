@@ -35,7 +35,7 @@ function ProfilePage() {
   const [semester, setSemester] = useState("");
   const [subjects, setSubjects] = useState<string[]>([]);
   const [interests, setInterests] = useState<string[]>([]);
-  const [level, setLevel] = useState(LEVELS[1]);
+  const [level, setLevel] = useState<string>(LEVELS[1] ?? "");
 
   useEffect(() => {
     if (!profile) return;
@@ -44,7 +44,7 @@ function ProfilePage() {
     setSemester(profile.semester ?? "");
     setSubjects(profile.subjects ?? []);
     setInterests(profile.interests ?? []);
-    setLevel(profile.skill_level ?? LEVELS[1]);
+    setLevel(profile.skill_level ?? LEVELS[1] ?? "");
   }, [profile]);
 
   const save = useMutation({
