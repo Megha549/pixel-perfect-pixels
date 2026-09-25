@@ -69,6 +69,15 @@ export function AppShell({ name, children }: { name: string; children: ReactNode
                 {item.label}
               </Link>
             ))}
+            <Link
+              to="/concept/$conceptId"
+              params={{ conceptId: "join" }}
+              activeProps={{ className: "bg-card/70 text-brand shadow-sm" }}
+              inactiveProps={{ className: "text-muted-foreground hover:text-brand" }}
+              className="rounded-full px-3.5 py-2 font-medium transition-colors"
+            >
+              Concept flow
+            </Link>
           </nav>
           <div className="flex items-center gap-3">
             <button
