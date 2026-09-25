@@ -29,7 +29,6 @@ export function Mark() {
 
 const NAV = [
   { to: "/dashboard", label: "Dashboard" },
-  { to: "/concept/join", label: "Concept flow" },
   { to: "/evidence", label: "Evidence" },
   { to: "/profile", label: "Profile" },
 ] as const;

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_authenticated/evidence")({
       },
     ],
   }),
-  component: Evidence;
+  component: Evidence,
 });
 
 function Evidence() {
