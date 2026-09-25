@@ -74,22 +74,36 @@ function Dashboard() {
       )}
 
       <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3">
-        {modules.map((m) => (
-          <Link
-            key={m.name}
-            to={m.to}
-            className="rounded-2xl border border-white/60 bg-card/65 p-4 shadow-sm backdrop-blur-xl transition-transform hover:-translate-y-0.5"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold">{m.name}</span>
-              <span className="font-mono text-[11px] text-muted-foreground">{m.meta}</span>
-            </div>
-            <div className="mt-3">
-              <Meter pct={m.pct} />
-            </div>
-            <p className="mt-3 text-xs text-muted-foreground">{m.note}</p>
-          </Link>
-        ))}
+        {modules.map((m) => {
+          const body = (
+            <>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-semibold">{m.name}</span>
+                <span className="font-mono text-[11px] text-muted-foreground">{m.meta}</span>
+              </div>
+              <div className="mt-3">
+                <Meter pct={m.pct} />
+              </div>
+              <p className="mt-3 text-xs text-muted-foreground">{m.note}</p>
+            </>
+          );
+          const cls =
+            "rounded-2xl border border-white/60 bg-card/65 p-4 shadow-sm backdrop-blur-xl transition-transform hover:-translate-y-0.5";
+          return m.concept ? (
+            <Link
+              key={m.name}
+              to="/concept/$conceptId"
+              params={{ conceptId: m.concept }}
+              className={cls}
+            >
+              {body}
+            </Link>
+          ) : (
+            <Link key={m.name} to="/evidence" className={cls}>
+              {body}
+            </Link>
+          );
+        })}
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-3">
